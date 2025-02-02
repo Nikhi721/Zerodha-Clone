@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import GeneralContext from "./GeneralContext";  // ✅ Import GeneralContext
 import "./BuyActionWindow.css";
+import server from "../environment.js"
 
 const BuyActionWindow = ({ uid }) => {
   const { closeBuyWindow } = useContext(GeneralContext);  // ✅ Use useContext to get the function
@@ -12,7 +13,7 @@ const BuyActionWindow = ({ uid }) => {
 
   const handleBuyClick = async () => {
     try {
-      await axios.post("http://localhost:3002/newOrder", {
+      await axios.post(`${server}/newOrder`, {
         name: uid,
         qty: stockQuantity,
         price: stockPrice,
